@@ -16,6 +16,7 @@ let mkToken () =
         "Ronald"
         [ "admin" ]
 
+// I see, we've created a httpAuth client that has the token
 let httpAuth () =
     http {
         AuthorizationBearer (mkToken ())
@@ -28,3 +29,14 @@ let httpAuth () =
 % httpAuth () {
     DELETE "http://localhost:5000/cities/paris"
 }
+
+% http {
+    GET "http://localhost:5000/cities"
+    CacheControl "no-cache"
+}
+
+% http {
+    GET "http://localhost:5000/cities/paris"    
+}
+
+
